@@ -24,6 +24,9 @@ in
     systemd.services.teamviewerd = {
       description = "TeamViewer remote control daemon";
 
+      # teamviewerd runs `su - <user> -c env` to read the session environment
+      path = [ pkgs.shadow.su ];
+
       wantedBy = [ "multi-user.target" ];
       wants = [ "network-online.target" ];
       after = [
