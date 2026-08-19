@@ -15,6 +15,9 @@
   libxtst,
   libsm,
   libxfixes,
+  libice,
+  libxau,
+  pipewire,
   coreutils,
   libsForQt5,
   icu63,
@@ -120,6 +123,7 @@ stdenv.mkDerivation (finalAttrs: {
         coreutils
       ]
     }"
+    # TeamViewer dlopen()s these at runtime
     "--prefix LD_LIBRARY_PATH : ${
       lib.makeLibraryPath [
         libxrandr
@@ -128,9 +132,12 @@ stdenv.mkDerivation (finalAttrs: {
         libxdamage
         libxtst
         libsm
+        libice
+        libxau
         libxfixes
         dbus
         icu63
+        pipewire
       ]
     }"
   ];
