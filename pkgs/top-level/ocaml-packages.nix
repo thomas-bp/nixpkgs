@@ -1175,12 +1175,7 @@ let
 
         lutils = callPackage ../development/ocaml-modules/lutils { };
 
-        inherit
-          (callPackage ../development/ocaml-modules/luv {
-          })
-          luv-0-5-12
-          luv
-          ;
+        luv = callPackage ../development/ocaml-modules/luv { };
 
         lwd = callPackage ../development/ocaml-modules/lwd { };
 
@@ -1517,8 +1512,6 @@ let
         ocaml-recovery-parser = callPackage ../development/tools/ocaml/ocaml-recovery-parser { };
 
         ocaml-sat-solvers = callPackage ../development/ocaml-modules/ocaml-sat-solvers { };
-
-        ocaml_sqlite3 = callPackage ../development/ocaml-modules/sqlite3 { };
 
         ocaml-syntax-shims = callPackage ../development/ocaml-modules/ocaml-syntax-shims { };
 
@@ -2068,6 +2061,8 @@ let
 
         spices = callPackage ../development/ocaml-modules/spices { };
 
+        sqlite3 = callPackage ../development/ocaml-modules/sqlite3 { };
+
         srt = callPackage ../development/ocaml-modules/srt {
           inherit (pkgs) srt;
         };
@@ -2294,6 +2289,8 @@ let
 
         xenstore_transport = callPackage ../development/ocaml-modules/xenstore_transport { };
 
+        xkbcommon = callPackage ../development/ocaml-modules/xkbcommon { };
+
         xml-light = callPackage ../development/ocaml-modules/xml-light { };
 
         xmlm = callPackage ../development/ocaml-modules/xmlm { };
@@ -2375,6 +2372,11 @@ let
         gd4o = throw "ocamlPackages.gd4o is not maintained, use ocamlPackages.gd instead";
         hol_light = pkgs.hol_light; # Added 2026-06-02
         lablgtk-extras = throw "lablgtk-extras has been removed as it depends on sourceview2, which has been removed from nixpkgs"; # Added 2026-08-11
+        luv-0-5-12 = luv.overrideAttrs (_: {
+          # Added 2026-08-11
+          version = "0.5.12";
+          __intentionallyOverridingVersion = true;
+        });
         mirage-bootvar-unix = throw "ocamlPackages.mirage-bootvar-unix has been removed, superseded by ocamlPackages.mirage-bootvar"; # Added 2026-08-18
         mirage-bootvar-xen = throw "ocamlPackages.mirage-bootvar-xen has been removed, superseded by ocamlPackages.mirage-bootvar"; # Added 2026-08-18
         notty = throw "2026-05-05: notty is no longer maintained, use notty-community instead";
@@ -2382,6 +2384,7 @@ let
         ocaml-vdom = throw "2023-10-09: ocamlPackages.ocaml-vdom was renamed to ocamlPackages.vdom";
         ocaml_lwt = throw "ocamlPackages.ocaml_lwt has been renamed to ocamlPackages.lwt"; # Added 2025-12-05
         ocaml_mysql = throw "ocamlPackages.ocaml_mysql is not maintained, use ocamlPackages.mariadb instead";
+        ocaml_sqlite3 = sqlite3; # Added 2026-08-21
         ocamlfuse = throw "ocamlPackages.ocamlfuse has been removed as it depends on fuse2";
         ocamlgraph_gtk = throw "ocamlPackages.ocamlgraph_gtk has been removed as it depends onlibgnomecanvas, which has been removed from Nixpkgs. Consider using ocamlPackages.ocamlgraph instead."; # Added 2026-07-23
         torch = throw "ocamlPackages.torch has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
